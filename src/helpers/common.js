@@ -11,7 +11,7 @@ const common = {
         msg = "Error 400. Authentication error";
         break;
       default:
-        msg = "Error 500. Please contact shamowen5@gmail.com for help.";
+        msg = errorMsg;
         break;
     }
     return toast[level](msg);
