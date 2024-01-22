@@ -4,15 +4,27 @@ This project serves as a user-friendly way to view the current bracket and teams
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+##Getting Started##
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run the development server: `npm start`
+4. Navigate to http://localhost:3000/ to view the application.
 
-In the project directory, you can run:
+##Features##
+- Ability to view live updating bracket
+- See all participating teams and auto-generated OP.GG links
+- Ability to login as Admin to add or remove teams, and update the bracket manually
 
-### `npm start`
+## Author
+- **Owen Wilson**
+- Thanks to Alex "Soul" for setting up and running the tournament
 
-Runs the app in the development mode.\
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+# WIP #
 
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
