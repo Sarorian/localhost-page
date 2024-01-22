@@ -1,4 +1,4 @@
-# Lakewood League Tournament Site
+# Lakewood League Tournament Site (WIP)
 
 This project serves as a user-friendly way to view the current bracket and teams for the Lakewood League of Legends Tournament at Localhost on 1/27/24
 
@@ -13,7 +13,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ##Features##
 - Ability to view live updating bracket
 - See all participating teams and auto-generated OP.GG links
-- Ability to login as Admin to add or remove teams, and update the bracket manually
+- Ability to log in as Admin to add or remove teams, and update the bracket manually
 
 ## Author
 - **Owen Wilson**
@@ -23,7 +23,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This project is open-source and available under the [MIT License](LICENSE).
 
-# WIP #
 
 
 
