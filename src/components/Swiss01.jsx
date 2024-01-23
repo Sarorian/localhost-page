@@ -14,6 +14,8 @@ function Swiss01({
     { blue: "", red: "", winner: "" },
   ]);
 
+  const [selectableTeams, setSelectableTeams] = useState([]);
+
   useEffect(() => {
     const updateData = () => {
       setNewMatchups(() => {
@@ -23,13 +25,14 @@ function Swiss01({
           winner: matchup.winner ? matchup.winner.teamName || "" : "",
         }));
       });
+      const teamsToSet = teamData.filter(
+        (team) => team.record.wins === 0 && team.record.losses === 0
+      );
+
+      setSelectableTeams(teamsToSet);
     };
     updateData();
-  }, [swiss01Data]);
-
-  const teamsWithZeroWinsAndOneLoss = teamData.filter(
-    (team) => team.record.wins === 0 && team.record.losses === 1
-  );
+  }, [swiss01Data, teamData]);
 
   const handleBlueTeamChange = (index, teamId) => {
     setNewMatchups((prev) => {
@@ -38,6 +41,11 @@ function Swiss01({
         updatedMatchups[index] = {};
       }
       updatedMatchups[index] = { ...updatedMatchups[index], blue: teamId };
+
+      if (teamId === "") {
+        updatedMatchups[index] = { ...updatedMatchups[index], red: "" };
+      }
+
       return updatedMatchups;
     });
   };
@@ -49,6 +57,10 @@ function Swiss01({
         updatedMatchups[index] = {};
       }
       updatedMatchups[index] = { ...updatedMatchups[index], red: teamId };
+      if (teamId === "") {
+        updatedMatchups[index] = { ...updatedMatchups[index], blue: "" };
+      }
+
       return updatedMatchups;
     });
   };
@@ -93,21 +105,25 @@ function Swiss01({
                     <span style={{ paddingRight: "5px" }}>
                       Game {matchup.game}
                     </span>
-                    <select
-                      value={newMatchups[index].blue}
-                      onChange={(e) =>
-                        handleBlueTeamChange(index, e.target.value)
-                      }
-                    >
-                      <option value="" disabled>
-                        Select Team
-                      </option>
-                      {teamsWithZeroWinsAndOneLoss.map((team) => (
-                        <option key={team._id} value={team._id}>
-                          {team.teamName}
-                        </option>
-                      ))}
-                    </select>
+                    {matchup.winner ? (
+                      // Display static text if winner is selected
+                      <span>{matchup.teams.blue?.teamName || "TBD"}</span>
+                    ) : (
+                      // Display dropdown if winner is not selected
+                      <select
+                        value={newMatchups[index].blue}
+                        onChange={(e) =>
+                          handleBlueTeamChange(index, e.target.value)
+                        }
+                      >
+                        <option value="">Select Team</option>
+                        {selectableTeams.map((team) => (
+                          <option key={team._id} value={team._id}>
+                            {team.teamName}
+                          </option>
+                        ))}
+                      </select>
+                    )}
                   </>
                 ) : matchup.teams.blue ? (
                   matchup.teams.blue.teamName
@@ -126,19 +142,27 @@ function Swiss01({
                 }}
               >
                 {isAdmin ? (
-                  <select
-                    value={newMatchups[index].red}
-                    onChange={(e) => handleRedTeamChange(index, e.target.value)}
-                  >
-                    <option value="" disabled>
-                      Select Team
-                    </option>
-                    {teamsWithZeroWinsAndOneLoss.map((team) => (
-                      <option key={team._id} value={team._id}>
-                        {team.teamName}
-                      </option>
-                    ))}
-                  </select>
+                  <>
+                    {matchup.winner ? (
+                      // Display static text if winner is selected
+                      <span>{matchup.teams.red?.teamName || "TBD"}</span>
+                    ) : (
+                      // Display dropdown if winner is not selected
+                      <select
+                        value={newMatchups[index].red}
+                        onChange={(e) =>
+                          handleRedTeamChange(index, e.target.value)
+                        }
+                      >
+                        <option value="">Select Team</option>
+                        {selectableTeams.map((team) => (
+                          <option key={team._id} value={team._id}>
+                            {team.teamName}
+                          </option>
+                        ))}
+                      </select>
+                    )}
+                  </>
                 ) : matchup.teams.red ? (
                   matchup.teams.red.teamName
                 ) : (
@@ -147,18 +171,26 @@ function Swiss01({
               </td>
               {isAdmin && (
                 <td style={{ textAlign: "center" }}>
-                  <select
-                    value={newMatchups[index].winner}
-                    onChange={(e) => handleWinnerChange(index, e.target.value)}
-                  >
-                    <option value="">Select Winner</option>
-                    <option value={newMatchups[index].blue}>
-                      {newMatchups[index].blue}
-                    </option>
-                    <option value={newMatchups[index].red}>
-                      {newMatchups[index].red}
-                    </option>
-                  </select>
+                  {matchup.winner ? (
+                    // Display static text if winner is selected
+                    <span>{matchup.winner.teamName}</span>
+                  ) : (
+                    // Display dropdown if winner is not selected
+                    <select
+                      value={newMatchups[index].winner}
+                      onChange={(e) =>
+                        handleWinnerChange(index, e.target.value)
+                      }
+                    >
+                      <option value="">Select Winner</option>
+                      <option value={newMatchups[index].blue}>
+                        {newMatchups[index].blue}
+                      </option>
+                      <option value={newMatchups[index].red}>
+                        {newMatchups[index].red}
+                      </option>
+                    </select>
+                  )}
                 </td>
               )}
             </tr>
