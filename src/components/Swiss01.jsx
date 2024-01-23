@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-function Swiss00({
-  swiss00Data,
+function Swiss01({
+  swiss01Data,
   teamData,
   isAdmin,
   updateMatchups,
@@ -12,16 +12,12 @@ function Swiss00({
     { blue: "", red: "", winner: "" },
     { blue: "", red: "", winner: "" },
     { blue: "", red: "", winner: "" },
-    { blue: "", red: "", winner: "" },
-    { blue: "", red: "", winner: "" },
-    { blue: "", red: "", winner: "" },
-    { blue: "", red: "", winner: "" },
   ]);
 
   useEffect(() => {
     const updateData = () => {
       setNewMatchups(() => {
-        return swiss00Data.map((matchup) => ({
+        return swiss01Data.map((matchup) => ({
           blue: matchup.teams.blue ? matchup.teams.blue.teamName || "" : "",
           red: matchup.teams.red ? matchup.teams.red.teamName || "" : "",
           winner: matchup.winner ? matchup.winner.teamName || "" : "",
@@ -29,10 +25,10 @@ function Swiss00({
       });
     };
     updateData();
-  }, [swiss00Data]);
+  }, [swiss01Data]);
 
-  const teamsWithZeroWinsAndLosses = teamData.filter(
-    (team) => team.record.wins === 0 && team.record.losses === 0
+  const teamsWithZeroWinsAndOneLoss = teamData.filter(
+    (team) => team.record.wins === 0 && team.record.losses === 1
   );
 
   const handleBlueTeamChange = (index, teamId) => {
@@ -70,7 +66,7 @@ function Swiss00({
       <thead>
         <tr>
           <th colSpan="3" style={{ textAlign: "center" }}>
-            <h2>Round 0-0</h2>
+            <h2>Round 0-1</h2>
           </th>
         </tr>
         <tr>
@@ -79,8 +75,8 @@ function Swiss00({
         </tr>
       </thead>
       <tbody>
-        {swiss00Data &&
-          swiss00Data.map((matchup, index) => (
+        {swiss01Data &&
+          swiss01Data.map((matchup, index) => (
             <tr key={index} className="matchup-row">
               <td
                 style={{
@@ -106,7 +102,7 @@ function Swiss00({
                       <option value="" disabled>
                         Select Team
                       </option>
-                      {teamsWithZeroWinsAndLosses.map((team) => (
+                      {teamsWithZeroWinsAndOneLoss.map((team) => (
                         <option key={team._id} value={team._id}>
                           {team.teamName}
                         </option>
@@ -137,7 +133,7 @@ function Swiss00({
                     <option value="" disabled>
                       Select Team
                     </option>
-                    {teamsWithZeroWinsAndLosses.map((team) => (
+                    {teamsWithZeroWinsAndOneLoss.map((team) => (
                       <option key={team._id} value={team._id}>
                         {team.teamName}
                       </option>
@@ -175,8 +171,8 @@ function Swiss00({
               <td colSpan="3" style={{ textAlign: "center" }}>
                 <button
                   onClick={() => {
-                    updateMatchups(newMatchups, "Swiss", "0-0");
-                    updateWinner(newMatchups, "Swiss", "0-0");
+                    updateMatchups(newMatchups, "Swiss", "0-1");
+                    updateWinner(newMatchups, "Swiss", "0-1");
                   }}
                 >
                   Update
@@ -190,4 +186,4 @@ function Swiss00({
   );
 }
 
-export default Swiss00;
+export default Swiss01;

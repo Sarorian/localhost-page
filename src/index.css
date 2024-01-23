@@ -73,6 +73,9 @@ nav li.admin {
   color: black;
   text-decoration: none;
 }
+.winner-row {
+  background-color: green;
+}
 
 .dot-pulse {
   position: absolute;

@@ -7,48 +7,43 @@ function Header({ handleAdmin }) {
 
   return (
     <>
-      <h1>Localhost January 27th</h1>
-      <nav>
-        <ul>
-          <li>
-            <NavLink
-              className={({ isActive }) => (isActive ? "active" : "inactive")}
-              to="/"
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/teams">Teams</NavLink>
-          </li>
-          <li>
-            <NavLink to="/bracket">Bracket</NavLink>
-          </li>
-          <li className="admin">
-            {/* {isAdmin && (
-              <span style={{ color: "red" }}>Logged in as Admin</span>
-            )} */}
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></input>
-            <button onClick={() => handleAdmin(password)}>Login</button>
-          </li>
-        </ul>
-      </nav>
-
-      {/* <select name="pets" id="pet-select" disabled={isAdmin ? false : true}>
-        <option value="">--Please choose an option--</option>
-        <option value="dog">Dog</option>
-        <option selected value="cat">
-          Cat
-        </option>
-        <option value="hamster">Hamster</option>
-        <option value="parrot">Parrot</option>
-        <option value="spider">Spider</option>
-        <option value="goldfish">Goldfish</option>
-      </select> */}
+      <header
+        style={{
+          position: "fixed",
+          width: "100%",
+          backgroundColor: "lightgray",
+          zIndex: 1000,
+          top: 0,
+        }}
+      >
+        <h1>Localhost January 27th</h1>
+        <nav>
+          <ul>
+            <li>
+              <NavLink
+                className={({ isActive }) => (isActive ? "active" : "inactive")}
+                to="/"
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/teams">Teams</NavLink>
+            </li>
+            <li>
+              <NavLink to="/bracket">Bracket</NavLink>
+            </li>
+            <li className="admin">
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
+              <button onClick={() => handleAdmin(password)}>Login</button>
+            </li>
+          </ul>
+        </nav>
+      </header>
     </>
   );
 }
