@@ -1,8 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import common from "../helpers/common";
-import axios from "axios";
 
 function Header({ handleAdmin }) {
   const [password, setPassword] = useState("");

@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Teams from "./pages/Teams";
 import axios from "axios";
 import common from "./helpers/common";
+import Bracket from "./pages/Bracket";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -34,6 +35,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Home isAdmin={isAdmin} />} />
             <Route path="/teams" element={<Teams isAdmin={isAdmin} />} />
+            <Route path="/bracket" element={<Bracket isAdmin={isAdmin} />} />
           </Routes>
         </div>
       </Router>

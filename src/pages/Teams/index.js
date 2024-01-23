@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import common from "../../helpers/common";
 import axios from "axios";
 import TeamsView from "../../components/TeamsView";
+import AdminDisplay from "../../components/AdminDisplay";
 
 const Teams = ({ isAdmin }) => {
   const [stateVal, setStateVal] = useState({
@@ -41,7 +42,7 @@ const Teams = ({ isAdmin }) => {
 
       const postData = {
         teamName,
-        players: [playerNamesTags],
+        players: playerNamesTags,
         seed,
       };
 
@@ -86,6 +87,26 @@ const Teams = ({ isAdmin }) => {
     }
   };
 
+  const onDeleteTeam = async (teamName) => {
+    try {
+      const formattedTeamName = teamName.replace(/ /g, "_");
+      const endpoint = `https://localhost-api-1c3554ca2868.herokuapp.com/removeTeam/${formattedTeamName}`;
+      const response = await axios.delete(endpoint);
+      if (response.status === 200) {
+        common.displayMessage("success", "Team deleted successfully");
+        setStateVal((prev) => ({
+          ...prev,
+          loading: true,
+        }));
+      } else {
+        common.displayMessage("error", "Failed to delete team");
+      }
+    } catch (error) {
+      console.error("Error deleting player:", error.message);
+      common.displayMessage("error", "Error adding player");
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -110,12 +131,14 @@ const Teams = ({ isAdmin }) => {
         <div className="dot-pulse"></div>
       ) : (
         <div>
+          {isAdmin && <AdminDisplay />}
           <TeamsView
             teamsData={teamsData}
             isAdmin={isAdmin}
             onDeletePlayer={onDeletePlayer}
             onAddPlayer={onAddPlayer}
             onAddTeam={onAddTeam}
+            onDeleteTeam={onDeleteTeam}
           />
         </div>
       )}

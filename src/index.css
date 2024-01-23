@@ -15,7 +15,6 @@ code {
 
 .container {
   margin: 4em;
-  background: #c1c3c3;
 }
 
 nav ul {
@@ -67,6 +66,7 @@ nav li.admin {
   width: calc(25% - 20px);
   box-sizing: border-box;
   margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .team-link {

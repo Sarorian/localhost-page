@@ -109,7 +109,7 @@ const TeamsView = ({
                   className="delete-button"
                   onClick={() => onDeleteTeam(team.teamName)}
                 >
-                  Remove
+                  Delete Team
                 </button>
               </>
             )}
