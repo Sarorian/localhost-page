@@ -222,11 +222,22 @@ const SwissBracket = ({ isAdmin }) => {
     }
   };
 
+  const DUPLICATE_MATCH = "Duplicates";
+
   const updateMatchups = async (matchups, stage, round) => {
     try {
       const filteredBracketGames = bracketData.filter((game) => {
         return game.stage === stage && game.round === round;
       });
+      const allTeams = matchups.reduce((acc, cur) => {
+        if (cur.red !== "") acc.push(cur.red);
+        if (cur.blue !== "") acc.push(cur.blue);
+        return acc;
+      }, []);
+      const uniqueAllTeams = [...new Set(allTeams)];
+      if (allTeams.length !== uniqueAllTeams.length) {
+        throw Error(DUPLICATE_MATCH);
+      }
       matchups.forEach((matchup, index) => {
         const { blue, red } = matchup;
         if (
@@ -258,13 +269,23 @@ const SwissBracket = ({ isAdmin }) => {
             })
             .catch((error) => {
               console.error("Error updating match:", error.message);
-              common.displayMessage("error", "Error updating match");
+              common.displayMessage(
+                "error",
+                error.message === DUPLICATE_MATCH
+                  ? DUPLICATE_MATCH
+                  : "Error updating match"
+              );
             });
         }
       });
     } catch (error) {
       console.error("Error updating matches:", error.message);
-      common.displayMessage("error", "Error updating matches");
+      common.displayMessage(
+        "error",
+        error.message === DUPLICATE_MATCH
+          ? DUPLICATE_MATCH
+          : "Error updating match"
+      );
     }
   };
 
