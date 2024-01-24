@@ -76,7 +76,7 @@ function Swiss02({
       <thead>
         <tr>
           <th colSpan="3" style={{ textAlign: "center" }}>
-            <h2>Round 0-2</h2>
+            <h2 className="round-name">Round 0-2</h2>
           </th>
         </tr>
         <tr>
@@ -89,13 +89,14 @@ function Swiss02({
           swiss02Data.map((matchup, index) => (
             <tr key={index} className="matchup-row">
               <td
+                className={
+                  matchup.winner?.teamName &&
+                  matchup.winner?.teamName === matchup.teams.blue?.teamName
+                    ? "winner-row"
+                    : ""
+                }
                 style={{
                   textAlign: "center",
-                  backgroundColor:
-                    matchup.winner?.teamName &&
-                    matchup.winner?.teamName === matchup.teams.blue?.teamName
-                      ? "green"
-                      : "",
                 }}
               >
                 {isAdmin ? (
@@ -127,13 +128,14 @@ function Swiss02({
                 )}
               </td>
               <td
+                className={
+                  matchup.winner?.teamName &&
+                  matchup.winner?.teamName === matchup.teams.red?.teamName
+                    ? "winner-row"
+                    : ""
+                }
                 style={{
                   textAlign: "center",
-                  backgroundColor:
-                    matchup.winner?.teamName &&
-                    matchup.winner?.teamName === matchup.teams.red?.teamName
-                      ? "green"
-                      : "",
                 }}
               >
                 {isAdmin ? (

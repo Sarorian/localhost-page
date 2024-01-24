@@ -12,7 +12,7 @@ import Swiss02 from "../../components/Swiss02";
 import Swiss30 from "../../components/Swiss30";
 import Swiss21 from "../../components/Swiss21";
 import Swiss12 from "../../components/Swiss12";
-import Swiss22 from "../../components/Swiss22";
+import Swiss31 from "../../components/Swiss31";
 
 const SwissBracket = ({ isAdmin }) => {
   const [stateVal, setStateVal] = useState({
@@ -99,10 +99,10 @@ const SwissBracket = ({ isAdmin }) => {
       (matchup) => matchup.stage === "Swiss" && matchup.round === "1-2"
     );
 
-  const swiss22Data =
+  const swiss31Data =
     bracketData &&
     bracketData.filter(
-      (matchup) => matchup.stage === "Swiss" && matchup.round === "2-2"
+      (matchup) => matchup.stage === "Swiss" && matchup.round === "3-1"
     );
 
   const resetBracket = () => {
@@ -196,11 +196,11 @@ const SwissBracket = ({ isAdmin }) => {
                   }
                 } else if (stageChange === "consolationSpecial") {
                   axios.put(
-                    `https://localhost-api-1c3554ca2868.herokuapp.com/setStage/${red}/${stageChange}`
+                    `https://localhost-api-1c3554ca2868.herokuapp.com/setStage/${red}/consolation`
                   );
 
                   axios.put(
-                    `https://localhost-api-1c3554ca2868.herokuapp.com/setStage/${blue}/${stageChange}`
+                    `https://localhost-api-1c3554ca2868.herokuapp.com/setStage/${blue}/consolation`
                   );
                 }
               } else {
@@ -277,7 +277,6 @@ const SwissBracket = ({ isAdmin }) => {
         <div className="swiss-container">
           <div className="round round-1">
             <h2 className="time-box">11:00 AM</h2>
-            <hr className="time-line"></hr>
             <Swiss00
               swiss00Data={swiss00Data}
               teamData={teamData}
@@ -353,8 +352,8 @@ const SwissBracket = ({ isAdmin }) => {
           </div>
           <div className="round round-5">
             <h2 className="time-box">3:00 PM</h2>
-            <Swiss22
-              swiss22Data={swiss22Data}
+            <Swiss31
+              swiss31Data={swiss31Data}
               teamData={teamData}
               isAdmin={isAdmin}
               updateMatchups={updateMatchups}

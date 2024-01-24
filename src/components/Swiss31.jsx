@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-function Swiss22({
-  swiss22Data,
+function Swiss31({
+  swiss31Data,
   teamData,
   isAdmin,
   updateMatchups,
@@ -16,20 +16,20 @@ function Swiss22({
   useEffect(() => {
     const updateData = () => {
       setNewMatchups(() => {
-        return swiss22Data.map((matchup) => ({
+        return swiss31Data.map((matchup) => ({
           blue: matchup.teams.blue ? matchup.teams.blue.teamName || "" : "",
           red: matchup.teams.red ? matchup.teams.red.teamName || "" : "",
           winner: matchup.winner ? matchup.winner.teamName || "" : "",
         }));
       });
       const teamsToSet = teamData.filter(
-        (team) => team.record.wins === 2 && team.record.losses === 2
+        (team) => team.record.wins === 3 && team.record.losses === 1
       );
 
       setSelectableTeams(teamsToSet);
     };
     updateData();
-  }, [swiss22Data, teamData]);
+  }, [swiss31Data, teamData]);
 
   const handleBlueTeamChange = (index, teamId) => {
     setNewMatchups((prev) => {
@@ -75,7 +75,7 @@ function Swiss22({
       <thead>
         <tr>
           <th colSpan="3" style={{ textAlign: "center" }}>
-            <h2>Qualifiers</h2>
+            <h2 className="round-name">Qualifiers</h2>
           </th>
         </tr>
         <tr>
@@ -84,17 +84,18 @@ function Swiss22({
         </tr>
       </thead>
       <tbody>
-        {swiss22Data &&
-          swiss22Data.map((matchup, index) => (
+        {swiss31Data &&
+          swiss31Data.map((matchup, index) => (
             <tr key={index} className="matchup-row">
               <td
+                className={
+                  matchup.winner?.teamName &&
+                  matchup.winner?.teamName === matchup.teams.blue?.teamName
+                    ? "winner-row"
+                    : ""
+                }
                 style={{
                   textAlign: "center",
-                  backgroundColor:
-                    matchup.winner?.teamName &&
-                    matchup.winner?.teamName === matchup.teams.blue?.teamName
-                      ? "green"
-                      : "",
                 }}
               >
                 {isAdmin ? (
@@ -126,13 +127,14 @@ function Swiss22({
                 )}
               </td>
               <td
+                className={
+                  matchup.winner?.teamName &&
+                  matchup.winner?.teamName === matchup.teams.red?.teamName
+                    ? "winner-row"
+                    : ""
+                }
                 style={{
                   textAlign: "center",
-                  backgroundColor:
-                    matchup.winner?.teamName &&
-                    matchup.winner?.teamName === matchup.teams.red?.teamName
-                      ? "green"
-                      : "",
                 }}
               >
                 {isAdmin ? (
@@ -197,8 +199,8 @@ function Swiss22({
               <td colSpan="3" style={{ textAlign: "center" }}>
                 <button
                   onClick={() => {
-                    updateMatchups(newMatchups, "Swiss", "2-2");
-                    updateWinner(newMatchups, "Swiss", "2-2", "consolation");
+                    updateMatchups(newMatchups, "Swiss", "3-1");
+                    updateWinner(newMatchups, "Swiss", "3-1", "consolation");
                   }}
                 >
                   Update
@@ -212,4 +214,4 @@ function Swiss22({
   );
 }
 
-export default Swiss22;
+export default Swiss31;

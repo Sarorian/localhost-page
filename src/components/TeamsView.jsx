@@ -7,6 +7,7 @@ const TeamsView = ({
   onAddPlayer,
   onAddTeam,
   onDeleteTeam,
+  onUpdateTeamName,
 }) => {
   const [newPlayers, setNewPlayers] = useState({});
   const [newTeam, setNewTeam] = useState({
@@ -14,6 +15,7 @@ const TeamsView = ({
     players: ["", "", "", "", ""],
     seed: "",
   });
+  const [newName, setNewName] = useState("");
   const sortedTeams = teamsData.sort((a, b) => a.seed - b.seed);
 
   const handleNewPlayerChange = (teamName, value) => {
@@ -21,6 +23,10 @@ const TeamsView = ({
       ...prevNewPlayers,
       [teamName]: value,
     }));
+  };
+
+  const handleNewNameChange = (teamName, value) => {
+    setNewTeam();
   };
 
   const handleTeamNameChange = (value) => {
@@ -124,6 +130,25 @@ const TeamsView = ({
               >
                 {team.teamName} (Seed: {team.seed})
               </a>
+              {isAdmin && (
+                <>
+                  <input
+                    type="text"
+                    value={newName || ""}
+                    placeholder="New Team Name"
+                    onChange={(e) =>
+                      handleNewPlayerChange(team.teamName, e.target.value)
+                    }
+                  ></input>
+                  <button
+                    onClick={() =>
+                      onAddPlayer(team.teamName, newPlayers[team.teamName])
+                    }
+                  >
+                    Add to team
+                  </button>
+                </>
+              )}
             </h2>
             <div>
               {team.players.map((player, playerIndex) => (

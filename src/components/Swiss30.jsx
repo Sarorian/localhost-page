@@ -75,7 +75,7 @@ function Swiss30({
       <thead>
         <tr>
           <th colSpan="3" style={{ textAlign: "center" }}>
-            <h2>Seeding</h2>
+            <h2 className="round-name">Seeding</h2>
           </th>
         </tr>
         <tr>
@@ -88,13 +88,14 @@ function Swiss30({
           swiss30Data.map((matchup, index) => (
             <tr key={index} className="matchup-row">
               <td
+                className={
+                  matchup.winner?.teamName &&
+                  matchup.winner?.teamName === matchup.teams.blue?.teamName
+                    ? "winner-row"
+                    : ""
+                }
                 style={{
                   textAlign: "center",
-                  backgroundColor:
-                    matchup.winner?.teamName &&
-                    matchup.winner?.teamName === matchup.teams.blue?.teamName
-                      ? "green"
-                      : "",
                 }}
               >
                 {isAdmin ? (
@@ -126,13 +127,14 @@ function Swiss30({
                 )}
               </td>
               <td
+                className={
+                  matchup.winner?.teamName &&
+                  matchup.winner?.teamName === matchup.teams.red?.teamName
+                    ? "winner-row"
+                    : ""
+                }
                 style={{
                   textAlign: "center",
-                  backgroundColor:
-                    matchup.winner?.teamName &&
-                    matchup.winner?.teamName === matchup.teams.red?.teamName
-                      ? "green"
-                      : "",
                 }}
               >
                 {isAdmin ? (

@@ -75,19 +75,12 @@ nav li.admin {
   text-decoration: none;
 }
 .winner-row {
-  background-color: #4caf50; /* Green background color */
-  color: white; /* White text color */
+  color: green; /* White text color */
   font-weight: bold; /* Bold text */
-  border: 2px solid #4caf50; /* Green border */
-  border-radius: 8px; /* Rounded corners */
-  padding: 10px; /* Adjust padding as needed */
-  margin: 5px 0; /* Adjust margin as needed */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .swiss-container {
   display: flex;
-
   align-items: center;
 }
 
@@ -101,9 +94,26 @@ nav li.admin {
   justify-items: center;
 }
 
-.time-box {
-  border: 2px solid #333;
-  background-color: #dd2113;
+tbody tr td:first-child {
+  border-right: 1px solid black;
+  border-left: 3px solid transparent; /* Adding transparent border on the left */
+  padding-right: 10px; /* Adjust this value to add space on the right */
+}
+
+tbody tr td:last-child {
+  padding-left: 10px; /* Adjust this value to add space on the right */
+}
+
+thead tr:last-child {
+  border-bottom: 1px solid black;
+}
+
+.round-name {
+  color: #33333365;
+}
+
+.bracket-table {
+  border-collapse: collapse;
 }
 
 .dot-pulse {
