@@ -78,7 +78,7 @@ function COFinals({
       <thead>
         <tr>
           <th colSpan="3" style={{ textAlign: "center" }}>
-            <h2 className="round-name">GRAND FINALS</h2>
+            <h2 className="round-name">GRAND FINALS (Bo3)</h2>
           </th>
         </tr>
         <tr>

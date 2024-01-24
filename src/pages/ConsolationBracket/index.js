@@ -253,6 +253,9 @@ const ConsolationBracket = ({ isAdmin }) => {
         const wins = team.record.wins;
         const losses = team.record.losses;
         axios.put(
+          `https://localhost-api-1c3554ca2868.herokuapp.com/setStage/${teamName}/Swiss`
+        );
+        axios.put(
           `https://localhost-api-1c3554ca2868.herokuapp.com/takeWins/${teamName}/${wins}`
         );
         axios.put(
@@ -281,34 +284,46 @@ const ConsolationBracket = ({ isAdmin }) => {
       ) : (
         <div>
           {isAdmin && <AdminDisplay />}
-          <COQuarterfinals
-            COQuarterfinalsData={COQuarterfinalsData}
-            teamData={teamData}
-            isAdmin={isAdmin}
-            updateMatchups={updateMatchups}
-            updateWinner={updateWinner}
-          />
-          <COSemifinals
-            COSemifinalsData={COSemifinalsData}
-            teamData={teamData}
-            isAdmin={isAdmin}
-            updateMatchups={updateMatchups}
-            updateWinner={updateWinner}
-          />
-          <COFinals
-            COFinalsData={COFinalsData}
-            teamData={teamData}
-            isAdmin={isAdmin}
-            updateMatchups={updateMatchups}
-            updateWinner={updateWinner}
-          />
-          <CO3rdPlace
-            CO3rdPlaceData={CO3rdPlaceData}
-            teamData={teamData}
-            isAdmin={isAdmin}
-            updateMatchups={updateMatchups}
-            updateWinner={updateWinner}
-          />
+          <div className="swiss-container">
+            <div className="round quarterfinals">
+              <h2 className="time-box">4:00 PM</h2>
+              <COQuarterfinals
+                COQuarterfinalsData={COQuarterfinalsData}
+                teamData={teamData}
+                isAdmin={isAdmin}
+                updateMatchups={updateMatchups}
+                updateWinner={updateWinner}
+              />
+            </div>
+            <div className="round semifinals">
+              <h2 className="time-box">5:00 PM</h2>
+              <COSemifinals
+                COSemifinalsData={COSemifinalsData}
+                teamData={teamData}
+                isAdmin={isAdmin}
+                updateMatchups={updateMatchups}
+                updateWinner={updateWinner}
+              />
+            </div>
+            <div className="round finals">
+              <h2 className="time-box">6:00 PM</h2>
+              <COFinals
+                COFinalsData={COFinalsData}
+                teamData={teamData}
+                isAdmin={isAdmin}
+                updateMatchups={updateMatchups}
+                updateWinner={updateWinner}
+              />
+              <CO3rdPlace
+                CO3rdPlaceData={CO3rdPlaceData}
+                teamData={teamData}
+                isAdmin={isAdmin}
+                updateMatchups={updateMatchups}
+                updateWinner={updateWinner}
+              />
+            </div>
+          </div>
+
           {isAdmin && <NukeButton resetBracket={resetBracket} />}
         </div>
       )}

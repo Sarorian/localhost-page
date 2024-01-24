@@ -83,7 +83,7 @@ function COQuarterfinals({
       <thead>
         <tr>
           <th colSpan="3" style={{ textAlign: "center" }}>
-            <h2 className="round-name">Semifinals</h2>
+            <h2 className="round-name">Quarterfinals</h2>
           </th>
         </tr>
         <tr>

@@ -258,27 +258,35 @@ const PlayoffBracket = ({ isAdmin }) => {
       ) : (
         <div>
           {isAdmin && <AdminDisplay />}
-          <POSemifinals
-            POSemifinalsData={POSemifinalsData}
-            teamData={teamData}
-            isAdmin={isAdmin}
-            updateMatchups={updateMatchups}
-            updateWinner={updateWinner}
-          />
-          <POFinals
-            POFinalsData={POFinalsData}
-            teamData={teamData}
-            isAdmin={isAdmin}
-            updateMatchups={updateMatchups}
-            updateWinner={updateWinner}
-          />
-          <PO3rdPlace
-            PO3rdPlaceData={PO3rdPlaceData}
-            teamData={teamData}
-            isAdmin={isAdmin}
-            updateMatchups={updateMatchups}
-            updateWinner={updateWinner}
-          />
+          <div className="swiss-container">
+            <div className="round semifinals">
+              <h2 className="time-box">4:00 PM</h2>
+              <POSemifinals
+                POSemifinalsData={POSemifinalsData}
+                teamData={teamData}
+                isAdmin={isAdmin}
+                updateMatchups={updateMatchups}
+                updateWinner={updateWinner}
+              />
+            </div>
+            <div className="round finals">
+              <h2 className="time-box">5:00 PM</h2>
+              <POFinals
+                POFinalsData={POFinalsData}
+                teamData={teamData}
+                isAdmin={isAdmin}
+                updateMatchups={updateMatchups}
+                updateWinner={updateWinner}
+              />
+              <PO3rdPlace
+                PO3rdPlaceData={PO3rdPlaceData}
+                teamData={teamData}
+                isAdmin={isAdmin}
+                updateMatchups={updateMatchups}
+                updateWinner={updateWinner}
+              />
+            </div>
+          </div>
           {isAdmin && <NukeButton resetBracket={resetBracket} />}
         </div>
       )}
