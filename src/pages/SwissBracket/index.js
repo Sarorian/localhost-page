@@ -6,8 +6,15 @@ import AdminDisplay from "../../components/AdminDisplay";
 import NukeButton from "../../components/NukeButton";
 import Swiss10 from "../../components/Swiss10";
 import Swiss01 from "../../components/Swiss01";
+import Swiss20 from "../../components/Swiss20";
+import Swiss11 from "../../components/Swiss11";
+import Swiss02 from "../../components/Swiss02";
+import Swiss30 from "../../components/Swiss30";
+import Swiss21 from "../../components/Swiss21";
+import Swiss12 from "../../components/Swiss12";
+import Swiss22 from "../../components/Swiss22";
 
-const Bracket = ({ isAdmin }) => {
+const SwissBracket = ({ isAdmin }) => {
   const [stateVal, setStateVal] = useState({
     bracketData: null,
     teamData: null,
@@ -56,6 +63,48 @@ const Bracket = ({ isAdmin }) => {
       (matchup) => matchup.stage === "Swiss" && matchup.round === "0-1"
     );
 
+  const swiss20Data =
+    bracketData &&
+    bracketData.filter(
+      (matchup) => matchup.stage === "Swiss" && matchup.round === "2-0"
+    );
+
+  const swiss11Data =
+    bracketData &&
+    bracketData.filter(
+      (matchup) => matchup.stage === "Swiss" && matchup.round === "1-1"
+    );
+
+  const swiss02Data =
+    bracketData &&
+    bracketData.filter(
+      (matchup) => matchup.stage === "Swiss" && matchup.round === "0-2"
+    );
+
+  const swiss30Data =
+    bracketData &&
+    bracketData.filter(
+      (matchup) => matchup.stage === "Swiss" && matchup.round === "3-0"
+    );
+
+  const swiss21Data =
+    bracketData &&
+    bracketData.filter(
+      (matchup) => matchup.stage === "Swiss" && matchup.round === "2-1"
+    );
+
+  const swiss12Data =
+    bracketData &&
+    bracketData.filter(
+      (matchup) => matchup.stage === "Swiss" && matchup.round === "1-2"
+    );
+
+  const swiss22Data =
+    bracketData &&
+    bracketData.filter(
+      (matchup) => matchup.stage === "Swiss" && matchup.round === "2-2"
+    );
+
   const resetBracket = () => {
     try {
       const resetRecord = (team) => {
@@ -67,6 +116,12 @@ const Bracket = ({ isAdmin }) => {
         );
         axios.put(
           `https://localhost-api-1c3554ca2868.herokuapp.com/takeLosses/${teamName}/${losses}`
+        );
+        axios.put(
+          `https://localhost-api-1c3554ca2868.herokuapp.com/setStage/${teamName}/Swiss`
+        );
+        axios.put(
+          `https://localhost-api-1c3554ca2868.herokuapp.com/finalsSeed/${teamName}/0`
         );
       };
       teamData.forEach((team) => {
@@ -92,7 +147,7 @@ const Bracket = ({ isAdmin }) => {
     axios.put(`${loserURL}${winner === blue ? red : blue}`);
   };
 
-  const updateWinner = async (matchups, stage, round) => {
+  const updateWinner = async (matchups, stage, round, stageChange) => {
     try {
       const filteredBracketGames = bracketData.filter((game) => {
         return game.stage === stage && game.round === round;
@@ -125,6 +180,29 @@ const Bracket = ({ isAdmin }) => {
                   ...prev,
                   loading: true,
                 }));
+                if (stageChange === "playoffs") {
+                  axios.put(
+                    `https://localhost-api-1c3554ca2868.herokuapp.com/setStage/${winner}/${stageChange}`
+                  );
+                } else if (stageChange === "consolation") {
+                  if (winner === blue) {
+                    axios.put(
+                      `https://localhost-api-1c3554ca2868.herokuapp.com/setStage/${red}/${stageChange}`
+                    );
+                  } else if (winner === red) {
+                    axios.put(
+                      `https://localhost-api-1c3554ca2868.herokuapp.com/setStage/${blue}/${stageChange}`
+                    );
+                  }
+                } else if (stageChange === "consolationSpecial") {
+                  axios.put(
+                    `https://localhost-api-1c3554ca2868.herokuapp.com/setStage/${red}/${stageChange}`
+                  );
+
+                  axios.put(
+                    `https://localhost-api-1c3554ca2868.herokuapp.com/setStage/${blue}/${stageChange}`
+                  );
+                }
               } else {
                 common.displayMessage("error", "Failed to update match");
               }
@@ -192,32 +270,98 @@ const Bracket = ({ isAdmin }) => {
 
   return (
     <>
+      {isAdmin && <AdminDisplay />}
       {loading ? (
         <div className="dot-pulse"></div>
       ) : (
-        <div>
-          {isAdmin && <AdminDisplay />}
-          <Swiss00
-            swiss00Data={swiss00Data}
-            teamData={teamData}
-            isAdmin={isAdmin}
-            updateMatchups={updateMatchups}
-            updateWinner={updateWinner}
-          />
-          <Swiss10
-            swiss10Data={swiss10Data}
-            teamData={teamData}
-            isAdmin={isAdmin}
-            updateMatchups={updateMatchups}
-            updateWinner={updateWinner}
-          />
-          <Swiss01
-            swiss01Data={swiss01Data}
-            teamData={teamData}
-            isAdmin={isAdmin}
-            updateMatchups={updateMatchups}
-            updateWinner={updateWinner}
-          />
+        <div className="swiss-container">
+          <div className="round round-1">
+            <h2 className="time-box">11:00 AM</h2>
+            <hr className="time-line"></hr>
+            <Swiss00
+              swiss00Data={swiss00Data}
+              teamData={teamData}
+              isAdmin={isAdmin}
+              updateMatchups={updateMatchups}
+              updateWinner={updateWinner}
+            />
+          </div>
+          <div className="round round-2">
+            <h2 className="time-box">12:00 PM</h2>
+            <Swiss10
+              swiss10Data={swiss10Data}
+              teamData={teamData}
+              isAdmin={isAdmin}
+              updateMatchups={updateMatchups}
+              updateWinner={updateWinner}
+            />
+            <Swiss01
+              swiss01Data={swiss01Data}
+              teamData={teamData}
+              isAdmin={isAdmin}
+              updateMatchups={updateMatchups}
+              updateWinner={updateWinner}
+            />
+          </div>
+          <div className="round round-3">
+            <h2 className="time-box">1:00 PM</h2>
+            <Swiss20
+              swiss20Data={swiss20Data}
+              teamData={teamData}
+              isAdmin={isAdmin}
+              updateMatchups={updateMatchups}
+              updateWinner={updateWinner}
+            />
+            <Swiss11
+              swiss11Data={swiss11Data}
+              teamData={teamData}
+              isAdmin={isAdmin}
+              updateMatchups={updateMatchups}
+              updateWinner={updateWinner}
+            />
+            <Swiss02
+              swiss02Data={swiss02Data}
+              teamData={teamData}
+              isAdmin={isAdmin}
+              updateMatchups={updateMatchups}
+              updateWinner={updateWinner}
+            />
+          </div>
+          <div className="round round-4">
+            <h2 className="time-box">2:00 PM</h2>
+            <Swiss30
+              swiss30Data={swiss30Data}
+              teamData={teamData}
+              isAdmin={isAdmin}
+              updateMatchups={updateMatchups}
+              updateWinner={updateWinner}
+            />
+            <Swiss21
+              swiss21Data={swiss21Data}
+              teamData={teamData}
+              isAdmin={isAdmin}
+              updateMatchups={updateMatchups}
+              updateWinner={updateWinner}
+            />
+            <Swiss12
+              swiss12Data={swiss12Data}
+              teamData={teamData}
+              isAdmin={isAdmin}
+              updateMatchups={updateMatchups}
+              updateWinner={updateWinner}
+            />
+          </div>
+          <div className="round round-5">
+            <h2 className="time-box">3:00 PM</h2>
+            <Swiss22
+              swiss22Data={swiss22Data}
+              teamData={teamData}
+              isAdmin={isAdmin}
+              updateMatchups={updateMatchups}
+              updateWinner={updateWinner}
+            />
+          </div>
+
           {isAdmin && <NukeButton resetBracket={resetBracket} />}
         </div>
       )}
@@ -225,4 +369,4 @@ const Bracket = ({ isAdmin }) => {
   );
 };
 
-export default Bracket;
+export default SwissBracket;

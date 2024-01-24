@@ -31,7 +31,13 @@ function Header({ handleAdmin }) {
               <NavLink to="/teams">Teams</NavLink>
             </li>
             <li>
-              <NavLink to="/bracket">Bracket</NavLink>
+              <NavLink to="/swissBracket">Swiss Stage</NavLink>
+            </li>
+            <li>
+              <NavLink to="/playoffBracket">Playoffs</NavLink>
+            </li>
+            <li>
+              <NavLink to="/consolationBracket">Consolation</NavLink>
             </li>
             <li className="admin">
               <input

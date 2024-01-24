@@ -75,7 +75,35 @@ nav li.admin {
   text-decoration: none;
 }
 .winner-row {
-  background-color: green;
+  background-color: #4caf50; /* Green background color */
+  color: white; /* White text color */
+  font-weight: bold; /* Bold text */
+  border: 2px solid #4caf50; /* Green border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Adjust padding as needed */
+  margin: 5px 0; /* Adjust margin as needed */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.swiss-container {
+  display: flex;
+
+  align-items: center;
+}
+
+.round {
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 10px;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: grid;
+  justify-items: center;
+}
+
+.time-box {
+  border: 2px solid #333;
+  background-color: #dd2113;
 }
 
 .dot-pulse {

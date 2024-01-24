@@ -9,7 +9,9 @@ import Home from "./pages/Home";
 import Teams from "./pages/Teams";
 import axios from "axios";
 import common from "./helpers/common";
-import Bracket from "./pages/Bracket";
+import SwissBracket from "./pages/SwissBracket";
+import PlayoffBracket from "./pages/PlayoffBracket";
+import ConsolationBracket from "./pages/ConsolationBracket";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -35,7 +37,18 @@ function App() {
             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Home isAdmin={isAdmin} />} />
             <Route path="/teams" element={<Teams isAdmin={isAdmin} />} />
-            <Route path="/bracket" element={<Bracket isAdmin={isAdmin} />} />
+            <Route
+              path="/swissBracket"
+              element={<SwissBracket isAdmin={isAdmin} />}
+            />
+            <Route
+              path="/playoffBracket"
+              element={<PlayoffBracket isAdmin={isAdmin} />}
+            />
+            <Route
+              path="/consolationBracket"
+              element={<ConsolationBracket isAdmin={isAdmin} />}
+            />
           </Routes>
         </div>
       </Router>

@@ -26,7 +26,7 @@ function Swiss10({
         }));
       });
       const teamsToSet = teamData.filter(
-        (team) => team.record.wins === 0 && team.record.losses === 0
+        (team) => team.record.wins === 1 && team.record.losses === 0
       );
 
       setSelectableTeams(teamsToSet);
@@ -78,7 +78,7 @@ function Swiss10({
       <thead>
         <tr>
           <th colSpan="3" style={{ textAlign: "center" }}>
-            <h2>Round 0-0</h2>
+            <h2>Round 1-0</h2>
           </th>
         </tr>
         <tr>
@@ -102,9 +102,6 @@ function Swiss10({
               >
                 {isAdmin ? (
                   <>
-                    <span style={{ paddingRight: "5px" }}>
-                      Game {matchup.game}
-                    </span>
                     {matchup.winner ? (
                       // Display static text if winner is selected
                       <span>{matchup.teams.blue?.teamName || "TBD"}</span>

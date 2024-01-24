@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-function Swiss00({
-  swiss00Data,
+function Swiss02({
+  swiss02Data,
   teamData,
   isAdmin,
   updateMatchups,
   updateWinner,
 }) {
   const [newMatchups, setNewMatchups] = useState([
-    { blue: "", red: "", winner: "" },
-    { blue: "", red: "", winner: "" },
-    { blue: "", red: "", winner: "" },
-    { blue: "", red: "", winner: "" },
-    { blue: "", red: "", winner: "" },
-    { blue: "", red: "", winner: "" },
     { blue: "", red: "", winner: "" },
     { blue: "", red: "", winner: "" },
   ]);
@@ -23,20 +17,20 @@ function Swiss00({
   useEffect(() => {
     const updateData = () => {
       setNewMatchups(() => {
-        return swiss00Data.map((matchup) => ({
+        return swiss02Data.map((matchup) => ({
           blue: matchup.teams.blue ? matchup.teams.blue.teamName || "" : "",
           red: matchup.teams.red ? matchup.teams.red.teamName || "" : "",
           winner: matchup.winner ? matchup.winner.teamName || "" : "",
         }));
       });
       const teamsToSet = teamData.filter(
-        (team) => team.record.wins === 0 && team.record.losses === 0
+        (team) => team.record.wins === 0 && team.record.losses === 2
       );
 
       setSelectableTeams(teamsToSet);
     };
     updateData();
-  }, [swiss00Data, teamData]);
+  }, [swiss02Data, teamData]);
 
   const handleBlueTeamChange = (index, teamId) => {
     setNewMatchups((prev) => {
@@ -55,7 +49,6 @@ function Swiss00({
   };
 
   const handleRedTeamChange = (index, teamId) => {
-    console.log("changing red team for game " + index);
     setNewMatchups((prev) => {
       const updatedMatchups = [...prev];
       if (!updatedMatchups[index]) {
@@ -83,7 +76,7 @@ function Swiss00({
       <thead>
         <tr>
           <th colSpan="3" style={{ textAlign: "center" }}>
-            <h2>Round 0-0</h2>
+            <h2>Round 0-2</h2>
           </th>
         </tr>
         <tr>
@@ -92,8 +85,8 @@ function Swiss00({
         </tr>
       </thead>
       <tbody>
-        {swiss00Data &&
-          swiss00Data.map((matchup, index) => (
+        {swiss02Data &&
+          swiss02Data.map((matchup, index) => (
             <tr key={index} className="matchup-row">
               <td
                 style={{
@@ -205,8 +198,8 @@ function Swiss00({
               <td colSpan="3" style={{ textAlign: "center" }}>
                 <button
                   onClick={() => {
-                    updateMatchups(newMatchups, "Swiss", "0-0");
-                    updateWinner(newMatchups, "Swiss", "0-0");
+                    updateMatchups(newMatchups, "Swiss", "0-2");
+                    updateWinner(newMatchups, "Swiss", "0-2", "consolation");
                   }}
                 >
                   Update
@@ -220,4 +213,4 @@ function Swiss00({
   );
 }
 
-export default Swiss00;
+export default Swiss02;
