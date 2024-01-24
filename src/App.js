@@ -28,6 +28,7 @@ function App() {
       common.displayMessage("error", error.message || "Error");
     }
   };
+
   return (
     <>
       <Router>
