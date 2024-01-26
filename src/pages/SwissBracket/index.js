@@ -222,6 +222,13 @@ const SwissBracket = ({ isAdmin }) => {
     }
   };
 
+  const highlight = (e, color) => {
+    [...document.getElementsByClassName("teamName")]
+      .filter((a) => a.innerHTML === e.target.innerHTML)
+      .forEach((a) => (a.style.backgroundColor = color));
+    console.log(e);
+  };
+
   const DUPLICATE_MATCH = "Duplicates";
 
   const updateMatchups = async (matchups, stage, round) => {
@@ -295,7 +302,11 @@ const SwissBracket = ({ isAdmin }) => {
       {loading ? (
         <div className="dot-pulse"></div>
       ) : (
-        <div className="swiss-container">
+        <div
+          className="swiss-container"
+          onMouseOver={(e) => highlight(e, "red")}
+          onMouseOut={(e) => highlight(e, null)}
+        >
           <div className="round round-1">
             <h2 className="time-box">11:00 AM</h2>
             <Swiss00

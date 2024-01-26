@@ -91,12 +91,12 @@ function Swiss10({
           swiss10Data.map((matchup, index) => (
             <tr key={index} className="matchup-row">
               <td
-                className={
+                className={`${
                   matchup.winner?.teamName &&
                   matchup.winner?.teamName === matchup.teams.blue?.teamName
                     ? "winner-row"
                     : ""
-                }
+                } teamName`}
                 style={{
                   textAlign: "center",
                 }}
