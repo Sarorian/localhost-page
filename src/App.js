@@ -1,7 +1,7 @@
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom"; // Change to HashRouter
 import React, { useState } from "react";
 import Header from "./components/Header";
 import NotFound from "./pages/NotFound";
@@ -46,11 +46,6 @@ function App() {
         <Header handleAdmin={handleAdmin} />
         <div className="container">
           <Routes>
-            <Route path="*" element={<NotFound />} />
-            <Route
-              path="/localhost-page"
-              element={<Home isAdmin={isAdmin} />}
-            />
             <Route path="/" element={<Home isAdmin={isAdmin} />} />
             <Route path="/teams" element={<Teams isAdmin={isAdmin} />} />
             <Route
@@ -69,6 +64,11 @@ function App() {
                 <ConsolationBracket isAdmin={isAdmin} highlight={highlight} />
               }
             />
+            <Route
+              path="/localhost-page"
+              element={<Home isAdmin={isAdmin} />}
+            />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </Router>
@@ -83,7 +83,6 @@ function App() {
         draggable
         pauseOnHover
         theme="light"
-        /* Default */
       />
     </>
   );
