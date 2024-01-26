@@ -14,7 +14,7 @@ import Swiss21 from "../../components/Swiss21";
 import Swiss12 from "../../components/Swiss12";
 import Swiss31 from "../../components/Swiss31";
 
-const SwissBracket = ({ isAdmin }) => {
+const SwissBracket = ({ isAdmin, highlight }) => {
   const [stateVal, setStateVal] = useState({
     bracketData: null,
     teamData: null,
@@ -222,13 +222,6 @@ const SwissBracket = ({ isAdmin }) => {
     }
   };
 
-  const highlight = (e, color) => {
-    [...document.getElementsByClassName("teamName")]
-      .filter((a) => a.innerHTML === e.target.innerHTML)
-      .forEach((a) => (a.style.backgroundColor = color));
-    console.log(e);
-  };
-
   const DUPLICATE_MATCH = "Duplicates";
 
   const updateMatchups = async (matchups, stage, round) => {
@@ -304,7 +297,7 @@ const SwissBracket = ({ isAdmin }) => {
       ) : (
         <div
           className="swiss-container"
-          onMouseOver={(e) => highlight(e, "red")}
+          onMouseOver={(e) => highlight(e, "#A4A4A4")}
           onMouseOut={(e) => highlight(e, null)}
         >
           <div className="round round-1">

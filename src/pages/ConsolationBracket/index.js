@@ -8,7 +8,7 @@ import COFinals from "../../components/COFinals.jsx";
 import CO3rdPlace from "../../components/CO3rdPlace";
 import COQuarterfinals from "../../components/COQuarterfinals.jsx";
 
-const ConsolationBracket = ({ isAdmin }) => {
+const ConsolationBracket = ({ isAdmin, highlight }) => {
   const [stateVal, setStateVal] = useState({
     bracketData: null,
     teamData: null,
@@ -284,7 +284,11 @@ const ConsolationBracket = ({ isAdmin }) => {
       ) : (
         <div>
           {isAdmin && <AdminDisplay />}
-          <div className="swiss-container">
+          <div
+            className="swiss-container"
+            onMouseOver={(e) => highlight(e, "#A4A4A4")}
+            onMouseOut={(e) => highlight(e, null)}
+          >
             <div className="round quarterfinals">
               <h2 className="time-box">4:00 PM</h2>
               <COQuarterfinals

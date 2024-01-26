@@ -130,12 +130,12 @@ function Swiss10({
                 )}
               </td>
               <td
-                className={
+                className={`${
                   matchup.winner?.teamName &&
                   matchup.winner?.teamName === matchup.teams.red?.teamName
                     ? "winner-row"
                     : ""
-                }
+                } teamName`}
                 style={{
                   textAlign: "center",
                 }}

@@ -7,7 +7,7 @@ import POSemifinals from "../../components/POSemifinals";
 import POFinals from "../../components/POFinals";
 import PO3rdPlace from "../../components/PO3rdPlace";
 
-const PlayoffBracket = ({ isAdmin }) => {
+const PlayoffBracket = ({ isAdmin, highlight }) => {
   const [stateVal, setStateVal] = useState({
     bracketData: null,
     teamData: null,
@@ -258,7 +258,11 @@ const PlayoffBracket = ({ isAdmin }) => {
       ) : (
         <div>
           {isAdmin && <AdminDisplay />}
-          <div className="swiss-container">
+          <div
+            className="swiss-container"
+            onMouseOver={(e) => highlight(e, "#A4A4A4")}
+            onMouseOut={(e) => highlight(e, null)}
+          >
             <div className="round semifinals">
               <h2 className="time-box">4:00 PM</h2>
               <POSemifinals

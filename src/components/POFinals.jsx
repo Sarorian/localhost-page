@@ -78,7 +78,7 @@ function POFinals({
       <thead>
         <tr>
           <th colSpan="3" style={{ textAlign: "center" }}>
-            <h2 className="round-name">GRAND FINALS</h2>
+            <h2 className="round-name">GRAND FINALS (Bo3)</h2>
           </th>
         </tr>
         <tr>
@@ -91,12 +91,12 @@ function POFinals({
           POFinalsData.map((matchup, index) => (
             <tr key={index} className="matchup-row">
               <td
-                className={
+                className={`${
                   matchup.winner?.teamName &&
                   matchup.winner?.teamName === matchup.teams.blue?.teamName
                     ? "winner-row"
                     : ""
-                }
+                } teamName`}
                 style={{
                   textAlign: "center",
                 }}
@@ -130,12 +130,12 @@ function POFinals({
                 )}
               </td>
               <td
-                className={
+                className={`${
                   matchup.winner?.teamName &&
                   matchup.winner?.teamName === matchup.teams.red?.teamName
                     ? "winner-row"
                     : ""
-                }
+                } teamName`}
                 style={{
                   textAlign: "center",
                 }}

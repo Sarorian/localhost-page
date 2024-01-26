@@ -29,6 +29,17 @@ function App() {
     }
   };
 
+  const highlight = (e, color) => {
+    [...document.getElementsByClassName("teamName")]
+      .filter(
+        (a) => a.innerHTML !== "TBD" && a.innerHTML === e.target.innerHTML
+      )
+      .forEach((a) => {
+        a.style.backgroundColor = color;
+        a.style.cursor = "pointer";
+      });
+  };
+
   return (
     <>
       <Router>
@@ -44,15 +55,19 @@ function App() {
             <Route path="/teams" element={<Teams isAdmin={isAdmin} />} />
             <Route
               path="/swissBracket"
-              element={<SwissBracket isAdmin={isAdmin} />}
+              element={<SwissBracket isAdmin={isAdmin} highlight={highlight} />}
             />
             <Route
               path="/playoffBracket"
-              element={<PlayoffBracket isAdmin={isAdmin} />}
+              element={
+                <PlayoffBracket isAdmin={isAdmin} highlight={highlight} />
+              }
             />
             <Route
               path="/consolationBracket"
-              element={<ConsolationBracket isAdmin={isAdmin} />}
+              element={
+                <ConsolationBracket isAdmin={isAdmin} highlight={highlight} />
+              }
             />
           </Routes>
         </div>

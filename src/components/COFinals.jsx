@@ -91,12 +91,12 @@ function COFinals({
           COFinalsData.map((matchup, index) => (
             <tr key={index} className="matchup-row">
               <td
-                className={
+                className={`${
                   matchup.winner?.teamName &&
                   matchup.winner?.teamName === matchup.teams.blue?.teamName
                     ? "winner-row"
                     : ""
-                }
+                } teamName`}
                 style={{
                   textAlign: "center",
                 }}
@@ -130,12 +130,12 @@ function COFinals({
                 )}
               </td>
               <td
-                className={
+                className={`${
                   matchup.winner?.teamName &&
                   matchup.winner?.teamName === matchup.teams.red?.teamName
                     ? "winner-row"
                     : ""
-                }
+                } teamName`}
                 style={{
                   textAlign: "center",
                 }}

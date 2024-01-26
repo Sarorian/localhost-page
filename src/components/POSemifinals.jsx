@@ -90,12 +90,12 @@ function POSemifinals({
           POSemifinalsData.map((matchup, index) => (
             <tr key={index} className="matchup-row">
               <td
-                className={
+                className={`${
                   matchup.winner?.teamName &&
                   matchup.winner?.teamName === matchup.teams.blue?.teamName
                     ? "winner-row"
                     : ""
-                }
+                } teamName`}
                 style={{
                   textAlign: "center",
                 }}
@@ -129,12 +129,12 @@ function POSemifinals({
                 )}
               </td>
               <td
-                className={
+                className={`${
                   matchup.winner?.teamName &&
                   matchup.winner?.teamName === matchup.teams.red?.teamName
                     ? "winner-row"
                     : ""
-                }
+                } teamName`}
                 style={{
                   textAlign: "center",
                 }}
