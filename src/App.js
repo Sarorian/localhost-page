@@ -36,6 +36,10 @@ function App() {
         <div className="container">
           <Routes>
             <Route path="*" element={<NotFound />} />
+            <Route
+              path="/localhost-page"
+              element={<Home isAdmin={isAdmin} />}
+            />
             <Route path="/" element={<Home isAdmin={isAdmin} />} />
             <Route path="/teams" element={<Teams isAdmin={isAdmin} />} />
             <Route
