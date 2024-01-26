@@ -100,6 +100,10 @@ tbody tr td:first-child {
   padding-right: 10px; /* Adjust this value to add space on the right */
 }
 
+tbody tr td {
+  border-bottom: 1px solid rgba(124, 123, 123, 0.459);
+}
+
 tbody tr td:last-child {
   padding-left: 10px; /* Adjust this value to add space on the right */
 }
