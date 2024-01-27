@@ -144,6 +144,10 @@ thead tr:last-child {
   margin-top: 5px;
 }
 
+.title {
+  margin-left: 1em;
+}
+
 .dot-pulse {
   position: absolute;
   left: -9999px;

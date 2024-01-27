@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import common from "../helpers/common";
 import axios from "axios";
+import logo from "../logo512.png";
 
 function Header({ handleAdmin }) {
   const [password, setPassword] = useState("");
@@ -45,7 +46,17 @@ function Header({ handleAdmin }) {
           top: 0,
         }}
       >
-        <h1>Localhost January 27th</h1>
+        <img
+          style={{
+            position: "absolute",
+            width: "32px",
+            right: "21px",
+            top: "35px",
+          }}
+          src={logo}
+          alt="Localhost Logo"
+        />
+        <h1 className="title">Localhost January 27th</h1>
         <nav>
           <ul>
             <li>
