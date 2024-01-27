@@ -17,8 +17,12 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const apiUrl = "https://localhost-api-1c3554ca2868.herokuapp.com/profiles/";
 
-  const handleAdmin = async (password) => {
+  const handleAdmin = async (password, logout) => {
     try {
+      if (logout) {
+        setIsAdmin(false);
+        return;
+      }
       const {
         data: { message },
       } = await axios.get(`${apiUrl}${password}`);

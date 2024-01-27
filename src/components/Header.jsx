@@ -1,9 +1,38 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import common from "../helpers/common";
+import axios from "axios";
 
 function Header({ handleAdmin }) {
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = async () => {
+    try {
+      const {
+        data: { message },
+      } = await axios.get(
+        `https://localhost-api-1c3554ca2868.herokuapp.com/profiles/${password}`
+      );
+
+      // Check if the user is an admin before setting isLoggedIn to true
+      if (message) {
+        setIsLoggedIn(true);
+        setPassword(""); // Clear the password input box on successful login
+      } else {
+        common.displayMessage("error", "Invalid credentials");
+      }
+    } catch (error) {
+      console.error(error);
+      common.displayMessage("error", error.message || "Error");
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setPassword(""); // Clear the password input box on logout
+  };
 
   return (
     <>
@@ -45,7 +74,25 @@ function Header({ handleAdmin }) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
-              <button onClick={() => handleAdmin(password)}>Login</button>
+              {isLoggedIn ? (
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    handleAdmin(password, true);
+                  }}
+                >
+                  Logout
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    handleLogin();
+                    handleAdmin(password);
+                  }}
+                >
+                  Login
+                </button>
+              )}
             </li>
           </ul>
         </nav>
