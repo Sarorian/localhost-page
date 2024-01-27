@@ -120,6 +120,30 @@ thead tr:last-child {
   border-collapse: collapse;
 }
 
+.team-box {
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 16px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.team-name {
+  font-size: 1.5em;
+  margin-bottom: 5px;
+}
+
+.team-info {
+  margin-top: 5px;
+}
+
+.winrate,
+.record {
+  display: block;
+  margin-top: 5px;
+}
+
 .dot-pulse {
   position: absolute;
   left: -9999px;
