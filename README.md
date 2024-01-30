@@ -1,4 +1,4 @@
-# Lakewood League Tournament Site (WIP)
+# Lakewood League Tournament Site
 
 This project serves as a user-friendly way to view the current bracket and teams for the Lakewood League of Legends Tournament at Localhost on 1/27/24
 
