@@ -56,7 +56,7 @@ function Header({ handleAdmin }) {
           src={logo}
           alt="Localhost Logo"
         />
-        <h1 className="title">Localhost January 27th</h1>
+        <h1 className="title">Localhost March 30th</h1>
         <nav>
           <ul>
             <li>
